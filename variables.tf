@@ -15,6 +15,7 @@ Optional:
     - endpoint_ip_address_range
     - final_backup_tags
     - kms_key_id
+    - network_type
     - preferred_subnet_id
     - region
     - route_table_ids
@@ -58,8 +59,9 @@ EOT
     route_table_ids                   = optional(set(string))
     region                            = optional(string)
     preferred_subnet_id               = optional(string)
+    network_type                      = optional(string)
+    kms_key_id                        = optional(string)
     final_backup_tags                 = optional(map(string))
-    tags_all                          = optional(map(string))
     endpoint_ip_address_range         = optional(string)
     delete_options                    = optional(set(string))
     daily_automatic_backup_start_time = optional(string)
@@ -67,7 +69,7 @@ EOT
     copy_tags_to_backups              = optional(bool)
     backup_id                         = optional(string)
     automatic_backup_retention_days   = optional(number)
-    kms_key_id                        = optional(string)
+    tags_all                          = optional(map(string))
     weekly_maintenance_start_time     = optional(string)
     disk_iops_configuration = optional(object({
       iops = optional(number)
@@ -159,6 +161,6 @@ EOT
     ])
     error_message = "all of: must be between 7 and 7 characters; must be in the format d:HH:MM"
   }
-  # Note: 11 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 12 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 

@@ -12,8 +12,9 @@ resource "aws_fsx_openzfs_file_system" "fsx_openzfs_file_systems" {
   route_table_ids                   = each.value.route_table_ids
   region                            = each.value.region
   preferred_subnet_id               = each.value.preferred_subnet_id
+  network_type                      = each.value.network_type
+  kms_key_id                        = each.value.kms_key_id
   final_backup_tags                 = each.value.final_backup_tags
-  tags_all                          = each.value.tags_all
   endpoint_ip_address_range         = each.value.endpoint_ip_address_range
   delete_options                    = each.value.delete_options
   daily_automatic_backup_start_time = each.value.daily_automatic_backup_start_time
@@ -21,7 +22,7 @@ resource "aws_fsx_openzfs_file_system" "fsx_openzfs_file_systems" {
   copy_tags_to_backups              = each.value.copy_tags_to_backups
   backup_id                         = each.value.backup_id
   automatic_backup_retention_days   = each.value.automatic_backup_retention_days
-  kms_key_id                        = each.value.kms_key_id
+  tags_all                          = each.value.tags_all
   weekly_maintenance_start_time     = each.value.weekly_maintenance_start_time
 
   dynamic "disk_iops_configuration" {
